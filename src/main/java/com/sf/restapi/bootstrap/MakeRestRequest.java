@@ -22,6 +22,6 @@ public class MakeRestRequest implements ApplicationListener<ContextRefreshedEven
     }
 
     public void makeRequest(){
-        restClient.getDamLogin();
+        restClient.damSearch();
     }
 }
