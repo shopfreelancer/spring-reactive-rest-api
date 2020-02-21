@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 public class SearchResults {
     private Integer totalHits;
-    private List<SearchResult> hits = new ArrayList<>();
+    private List<SearchResultWithDeserializer> hits = new ArrayList<>();
 }
