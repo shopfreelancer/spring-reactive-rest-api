@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -60,12 +59,10 @@ public class RestClient {
 
         String authToken = getDamLogin();
 
-
         String url = DAM_ELVIS_URL + "/services/search";
         SearchResults response = webClient
                 .post()
                 .uri(url)
-                //.filter(logRequest())
                 .body(BodyInserters.fromFormData("q", "").with("num", "3"))
                 .headers(h -> h.setBearerAuth(authToken))
 
@@ -78,15 +75,4 @@ public class RestClient {
 
         log.info(response.toString());
     }
-
-
-    // This method returns filter function which will log request data
-    private static ExchangeFilterFunction logRequest() {
-        return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
-            log.info("Request: {} {}", clientRequest.method(), clientRequest.url());
-            clientRequest.headers().forEach((name, values) -> values.forEach(value -> log.info("{}={}", name, value)));
-            return Mono.just(clientRequest);
-        });
-    }
-
 }
