@@ -1,0 +1,7 @@
+dam.elvis.url=
+dam.elvis.user=
+dam.elvis.password=
+
+logging.level.reactor=
+logging.level.org.springframework.web.reactive.function.client.ExchangeFunctions=TRACE
+spring.http.log-request-details=true
